@@ -56,8 +56,13 @@ library(pdp)
 library(vip)
 library(lime)
 library(caret)
+library(gridExtra)
 fit_caret = train(cnt ~., data = results, method = "rf", trControl = trainControl(method = "cv",number = 5))
-vip(fit_caret) + ggtitle("Feature importance")
+p1 = partial(fit_caret, pred.var = "days_since_2011", plot = TRUE, rug = TRUE, plot.engine = "ggplot2")
+p2 = partial(fit_caret, pred.var = "temp", plot = TRUE, rug = TRUE, plot.engine = "ggplot2")
+p3 = partial(fit_caret, pred.var = "hum", plot = TRUE, rug = TRUE, plot.engine = "ggplot2")
+p4 = partial(fit_caret, pred.var = "windspeed", plot = TRUE, rug = TRUE, plot.engine = "ggplot2")
+grid.arrange(p1,p2,p3,p4,ncol = 4, nrow = 1)
 ```
 
 
