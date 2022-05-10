@@ -51,12 +51,13 @@ for(c in names(results)[1:4])
 
 ```
 
-```{r}
+```{r EJERCICIO 1}
 library(pdp)
 library(vip)
 library(lime)
 library(caret)
 fit_caret = train(cnt ~., data = results, method = "rf", trControl = trainControl(method = "cv",number = 5))
+vip(fit_caret) + ggtitle("Feature importance")
 ```
 
 
