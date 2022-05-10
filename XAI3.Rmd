@@ -100,6 +100,11 @@ Analyse the influence of **bedrooms, bathrooms, sqft_living** and **floors** on 
 
 
 ```{r}
+library(dplyr)
+library(plotly)
+library(reshape2)
+library(lubridate)
+library(randomForestSRC)
 
 d <- read.csv("kc_house_data.csv")
 
@@ -123,3 +128,22 @@ for(c in names(results)[1:4])
 
 ```
 
+
+```{r act4}
+library(pdp)
+p1 = ggplot(data = sampled) + geom_line(aes(x=bedrooms, y=results$bedrooms))+
+  geom_rug(mapping = aes(x=bedrooms), sides = "b", inherit.aes = F)
+print(p1)
+
+p2 = ggplot(data = sampled) + geom_line(aes(x=bathrooms, y=results$bathrooms))+
+  geom_rug(mapping = aes(x=bathrooms), sides = "b", inherit.aes = F)
+print(p2)
+
+p3 = ggplot(data = sampled) + geom_line(aes(x=sqft_living, y=results$sqft_living))+
+  geom_rug(mapping = aes(x=sqft_living), sides = "b", inherit.aes = F)
+print(p3)
+
+p4 = ggplot(data = sampled) + geom_line(aes(x=floors, y=results$floors))+
+  geom_rug(mapping = aes(x=floors), sides = "b", inherit.aes = F)
+print(p4)
+```
