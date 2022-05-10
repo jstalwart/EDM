@@ -12,14 +12,13 @@ Apply PDP to the regression example of predicting bike rentals. Fit a random for
 Analyse the influence of **days since 2011, temperature, humidity** and **wind speed** on the predicted bike counts.
 
 
-```{r}
+```{r PREPROCESADO}
 library(dplyr)
 library(plotly)
 library(reshape2)
 library(lubridate)
 library(randomForestSRC)
 
-#setwd("/Users/cmonserr/OneDrive - UPV/Trabajo_2/Asignaturas/Evaluacion de modelos/Practicas/Practica 3/Bike-Sharing-Dataset")
 days <- read.csv("day.csv")
 hour <- read.csv("hour.csv")
 
@@ -51,6 +50,14 @@ for(c in names(results)[1:4])
 
 
 ```
+
+```{r}
+library(pdp)
+library(vip)
+library(lime)
+fit_caret = train(cnt ~., data = results, method = "rf", trControl = trainControl(method = "cv",number = 5, classProbs = TRUE))
+```
+
 
 ## EXERCISE:
 
