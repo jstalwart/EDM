@@ -52,6 +52,7 @@ for(c in names(results)[1:4])
 
 ```
 
+
 ## EXERCISE:
 
 Generate a 2D Partial Dependency Plot with humidity and temperature to predict the number of bikes rented depending of those parameters.
@@ -85,6 +86,13 @@ for(i in 1:nrow(th)){
 }
 
 ```
+
+```{r}
+library(ggplot2)
+
+ggplot(th, aes(x = round(temp/4)*4, y = round(hum/6)*6, fill = p)) + geom_tile() + geom_rug(mapping= aes(x =temp), sides = "b", inherit.aes = F) + geom_rug(mapping= aes(y =hum), sides = "l", inherit.aes = F) + scale_x_continuous(limits = c(0, 35))+ scale_y_continuous(limits = c(25, 95))+xlab('Temperatura')+ylab("Humedad") + labs(fill="Número de bicicletas")
+```
+
 
 
 ## EXERCISE:
