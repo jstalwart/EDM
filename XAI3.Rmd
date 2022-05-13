@@ -63,10 +63,6 @@ Show the density distribution of both input features with the 2D plot as shown i
 
 TIP: Use geom_tile() to generate the 2D plot. Set width and height to avoid holes. 
 
-## QUESTION:
-
-Interpret the results.
-
 
 ```{r}
 
@@ -90,10 +86,16 @@ for(i in 1:nrow(th)){
 ```{r}
 library(ggplot2)
 
-ggplot(th, aes(x = round(temp/4)*4, y = round(hum/6)*6, fill = p)) + geom_tile() + geom_rug(mapping= aes(x =temp), sides = "b", inherit.aes = F) + geom_rug(mapping= aes(y =hum), sides = "l", inherit.aes = F) + scale_x_continuous(limits = c(0, 35))+ scale_y_continuous(limits = c(25, 95))+xlab('Temperatura')+ylab("Humedad") + labs(fill="Número de bicicletas")
+ggplot(th, aes(x = round(temp/3)*3, y = round(hum/8)*8, fill = p)) + geom_tile() + geom_rug(mapping= aes(x =temp), sides = "b", inherit.aes = F) + geom_rug(mapping= aes(y =hum), sides = "l", inherit.aes = F) + scale_x_continuous(limits = c(0, 33))+ scale_y_continuous(limits = c(30, 95))+xlab('Temperatura')+ylab("Humedad") + labs(fill="Número de bicicletas")
 ```
 
 
+## QUESTION:
+Interpret the results.
+
+Según el mapa de calor obtenido, se alquilan más bicicletas cuando la temperatura está entre de 16 y 25 grados y la humedad se encuentra en el intervalo 40-60. Esto coincide con unas condiciones climáticas comunes a finales de la primavera e incluso algunos días de verano, por lo que son condiciones favorables para alquilar bicicletas.
+
+En cambio, se alquilarán menos bicicletas cuando la temperatura está alrededor de 3 grados y la humedad es superior a 80, ya que estas condiciones coinciden con condiciones más desfavorables para realizar actividades al aire libre.
 
 ## EXERCISE:
 
