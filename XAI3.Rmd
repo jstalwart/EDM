@@ -14,6 +14,7 @@ Analyse the influence of **days since 2011, temperature, humidity** and **wind s
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 ```{r}
 =======
 ```{r PREPROCESADO}
@@ -21,6 +22,9 @@ Analyse the influence of **days since 2011, temperature, humidity** and **wind s
 =======
 ```{r}
 >>>>>>> fede69f29790df710c45f6824814175a0368f49d
+=======
+```{r}
+>>>>>>> ead5658a05c2ebb87e2e7e627591c3acf91328dd
 library(dplyr)
 library(plotly)
 library(reshape2)
@@ -29,12 +33,16 @@ library(randomForestSRC)
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #setwd("/Users/cmonserr/OneDrive - UPV/Trabajo_2/Asignaturas/Evaluacion de modelos/Practicas/Practica 3/Bike-Sharing-Dataset")
 =======
 >>>>>>> a3dc4f3920a458c7d5f6e7cbe823a65eb5fcb43d
 =======
 #setwd("/Users/cmonserr/OneDrive - UPV/Trabajo_2/Asignaturas/Evaluacion de modelos/Practicas/Practica 3/Bike-Sharing-Dataset")
 >>>>>>> fede69f29790df710c45f6824814175a0368f49d
+=======
+#setwd("/Users/cmonserr/OneDrive - UPV/Trabajo_2/Asignaturas/Evaluacion de modelos/Practicas/Practica 3/Bike-Sharing-Dataset")
+>>>>>>> ead5658a05c2ebb87e2e7e627591c3acf91328dd
 days <- read.csv("day.csv")
 hour <- read.csv("hour.csv")
 
@@ -67,6 +75,7 @@ for(c in names(results)[1:4])
 
 ```
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -104,6 +113,8 @@ Por último, huelga decir que la velocidad del viento, aunque no es el factor pr
 =======
 
 >>>>>>> fede69f29790df710c45f6824814175a0368f49d
+=======
+>>>>>>> ead5658a05c2ebb87e2e7e627591c3acf91328dd
 ## EXERCISE:
 
 Generate a 2D Partial Dependency Plot with humidity and temperature to predict the number of bikes rented depending of those parameters.
@@ -115,12 +126,18 @@ Show the density distribution of both input features with the 2D plot as shown i
 TIP: Use geom_tile() to generate the 2D plot. Set width and height to avoid holes. 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ead5658a05c2ebb87e2e7e627591c3acf91328dd
 ## QUESTION:
 
 Interpret the results.
 
+<<<<<<< HEAD
 =======
 >>>>>>> fede69f29790df710c45f6824814175a0368f49d
+=======
+>>>>>>> ead5658a05c2ebb87e2e7e627591c3acf91328dd
 
 ```{r}
 
@@ -142,6 +159,7 @@ for(i in 1:nrow(th)){
 ```
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 ```{r}
 library(ggplot2)
@@ -157,6 +175,8 @@ Según el mapa de calor obtenido, se alquilan más bicicletas cuando la temperat
 
 En cambio, se alquilarán menos bicicletas cuando la temperatura está alrededor de 3 grados y la humedad es superior a 80, ya que estas condiciones coinciden con condiciones más desfavorables para realizar actividades al aire libre.
 >>>>>>> fede69f29790df710c45f6824814175a0368f49d
+=======
+>>>>>>> ead5658a05c2ebb87e2e7e627591c3acf91328dd
 
 ## EXERCISE:
 
@@ -171,6 +191,14 @@ Analyse the influence of **bedrooms, bathrooms, sqft_living** and **floors** on 
 
 
 ```{r}
+<<<<<<< HEAD
+=======
+library(dplyr)
+library(plotly)
+library(reshape2)
+library(lubridate)
+library(randomForestSRC)
+>>>>>>> ead5658a05c2ebb87e2e7e627591c3acf91328dd
 
 d <- read.csv("kc_house_data.csv")
 
@@ -194,3 +222,35 @@ for(c in names(results)[1:4])
 
 ```
 
+<<<<<<< HEAD
+=======
+
+```{r act4}
+library(pdp)
+p1 = ggplot(data = sampled) + geom_line(aes(x=bedrooms, y=results$bedrooms))+
+  geom_rug(mapping = aes(x=bedrooms), sides = "b", inherit.aes = F)
+
+
+p2 = ggplot(data = sampled) + geom_line(aes(x=bathrooms, y=results$bathrooms))+
+  geom_rug(mapping = aes(x=bathrooms), sides = "b", inherit.aes = F)
+
+
+p3 = ggplot(data = sampled) + geom_line(aes(x=sqft_living, y=results$sqft_living))+
+  geom_rug(mapping = aes(x=sqft_living), sides = "b", inherit.aes = F)
+
+
+p4 = ggplot(data = sampled) + geom_line(aes(x=floors, y=results$floors))+
+  geom_rug(mapping = aes(x=floors), sides = "b", inherit.aes = F)
+
+
+grid.arrange(p1,p2,p3,p4,ncol = 4, nrow = 1)
+```
+
+**Dormitorios.** En este caso, la variable de número de dormitorios es discreta, por lo que no podemos observar de forma certera la distribución de la muestra. Podemos estimar que el precio de una vivienda es más alto si tiene solamente dos dormitorios y decrece drásticamente cuando tiene 3. También podemos ver que luego el precio tiende a subir conforme más dormitorios tiene la residencia. Esto es distinto en viviendas con 5 dormitorios, que tienen, por lo general, precios más bajos. 
+
+**Lavabos.** Podemos observar que parece que hay numerosos casos de viviendas de entre 1 y 5 lavabos. Esto quiere decir que este intervalo tiene una confianza mayor que el resto. Así pues, comprobamos que existe una tendencia ascendente. Es decir, cuantos más lavabos tiene una vivienda, más aumenta el precio. Esto parece estabilizarse en 4 lavabos, aunque podría ser debido a que el número de muestras de este tipo es bajo. 
+
+**Metros cuadrados.** Comprobamos que hay una tendencia positiva, de forma que el ascenso es notable. Esto quiere decir que cuanto más grande sea la casa, mayor será su precio. Este gráfico se estabiliza al llegar a 5000 pies cuadrados, pero esto probablemente sea debido a que la cantidad de casos es muy inferior.
+
+**Suelo.** Respecto al suelo, de nuevo se puede comprobar que se trata de una variable discreta, por lo que no podremos observar la distribución de la misma. Por otro lado, podemos ver que su tendencia también será ascendente. 
+>>>>>>> ead5658a05c2ebb87e2e7e627591c3acf91328dd
