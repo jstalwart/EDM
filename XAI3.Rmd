@@ -12,14 +12,21 @@ Apply PDP to the regression example of predicting bike rentals. Fit a random for
 Analyse the influence of **days since 2011, temperature, humidity** and **wind speed** on the predicted bike counts.
 
 
+<<<<<<< HEAD
 ```{r}
+=======
+```{r PREPROCESADO}
+>>>>>>> a3dc4f3920a458c7d5f6e7cbe823a65eb5fcb43d
 library(dplyr)
 library(plotly)
 library(reshape2)
 library(lubridate)
 library(randomForestSRC)
 
+<<<<<<< HEAD
 #setwd("/Users/cmonserr/OneDrive - UPV/Trabajo_2/Asignaturas/Evaluacion de modelos/Practicas/Practica 3/Bike-Sharing-Dataset")
+=======
+>>>>>>> a3dc4f3920a458c7d5f6e7cbe823a65eb5fcb43d
 days <- read.csv("day.csv")
 hour <- read.csv("hour.csv")
 
@@ -52,6 +59,39 @@ for(c in names(results)[1:4])
 
 ```
 
+<<<<<<< HEAD
+=======
+Con el propósito de representar los diversos efectos de las variables se representarán los diferentes PDP de las variables solicitadas. Para ello, se usarán las librerías ggplot2 y gridExtra.
+
+```{r EJERCICIO 1, warning = FALSE}
+library(ggplot2)
+library(gridExtra)
+a = 2700
+b = 5800
+p1 = ggplot() + geom_line(aes(x = days_since$days_since_2011, y = results$days_since_2011)) +
+  geom_rug(mapping = aes(x = days_since$days_since_2011), sides = "b", inherit.aes = F) + xlab("Days since 2011") +
+  ylab(NULL) + ylim(a,b)
+p2 = ggplot() + geom_line(aes(x = days_since$temp, y = results$temp)) +
+  geom_rug(mapping = aes(x = days_since$temp), sides = "b", inherit.aes = F) + xlab("Temperature") + ylab(NULL) +
+  ylim(a,b)
+p3 = ggplot() + geom_line(aes(x = days_since$hum, y = results$hum)) +
+  geom_rug(mapping = aes(x = days_since$hum), sides = "b", inherit.aes = F) + xlab("Humidity") + ylab(NULL) +
+  ylim(a,b)
+p4 = ggplot() + geom_line(aes(x = days_since$windspeed, y = results$windspeed)) +
+  geom_rug(mapping = aes(x = days_since$windspeed), sides = "b", inherit.aes = F) + xlab("Windspeed") + ylab(NULL) +
+  ylim(a,b)
+grid.arrange(p1,p2,p3,p4,ncol = 4,left = "Resultados")
+```
+
+En primer lugar, la variable en la que mayor variación se apreciaría sería los días desde 2011. En este se aprecia un crecimiento escalado, con fuertes subidas de las ventas con las jornadas entorno a los días 100 y 400. A partir del día 650, se aprecia el inicio de un fuerte descenso.
+
+En segundo lugar, también la temperatura sería un factor influyente a la hora de analizar las ventas. Si la temperatura es de entorno a 0 grados, los alquileres rondan los 3000, mientras que si hace entorno a 20 grados los alquileres ascenden a los 5200. A paritr de los 25 grados se decrecen.
+
+En tercer lugar, referente a la humedad, esta también afectaría a los alquileres de bicis. Si la humedad es menor al 50%, la venta se mantiene estable entorno a los 4700 usuarios. A partir de este número, la venta decrece fuertemente, llegando a los 3500 alquileres con un 100% de humedad.
+
+Por último, huelga decir que la velocidad del viento, aunque no es el factor principal a la hora de adquirir este servicio, si que influiría bastante. Si la velocidad del viento es nula, las ventas se situarían en torno a las 4700 bicis. No obstante, a medida que aumenta este dato, menor número de alquileres se consigue, llegando hasta los 4000 alquileres con 25 km/h. A partir de esta medida, las ventas se mantienen estables, posiblemente debido a la pocas instancias con un registro superior a este. 
+
+>>>>>>> a3dc4f3920a458c7d5f6e7cbe823a65eb5fcb43d
 ## EXERCISE:
 
 Generate a 2D Partial Dependency Plot with humidity and temperature to predict the number of bikes rented depending of those parameters.
