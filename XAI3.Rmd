@@ -133,17 +133,27 @@ for(c in names(results)[1:4])
 library(pdp)
 p1 = ggplot(data = sampled) + geom_line(aes(x=bedrooms, y=results$bedrooms))+
   geom_rug(mapping = aes(x=bedrooms), sides = "b", inherit.aes = F)
-print(p1)
+
 
 p2 = ggplot(data = sampled) + geom_line(aes(x=bathrooms, y=results$bathrooms))+
   geom_rug(mapping = aes(x=bathrooms), sides = "b", inherit.aes = F)
-print(p2)
+
 
 p3 = ggplot(data = sampled) + geom_line(aes(x=sqft_living, y=results$sqft_living))+
   geom_rug(mapping = aes(x=sqft_living), sides = "b", inherit.aes = F)
-print(p3)
+
 
 p4 = ggplot(data = sampled) + geom_line(aes(x=floors, y=results$floors))+
   geom_rug(mapping = aes(x=floors), sides = "b", inherit.aes = F)
-print(p4)
+
+
+grid.arrange(p1,p2,p3,p4,ncol = 4, nrow = 1)
 ```
+
+**Dormitorios.** En este caso, la variable de número de dormitorios es discreta, por lo que no podemos observar de forma certera la distribución de la muestra. Podemos estimar que el precio de una vivienda es más alto si tiene solamente dos dormitorios y decrece drásticamente cuando tiene 3. También podemos ver que luego el precio tiende a subir conforme más dormitorios tiene la residencia. Esto es distinto en viviendas con 5 dormitorios, que tienen, por lo general, precios más bajos. 
+
+**Lavabos.** Podemos observar que parece que hay numerosos casos de viviendas de entre 1 y 5 lavabos. Esto quiere decir que este intervalo tiene una confianza mayor que el resto. Así pues, comprobamos que existe una tendencia ascendente. Es decir, cuantos más lavabos tiene una vivienda, más aumenta el precio. Esto parece estabilizarse en 4 lavabos, aunque podría ser debido a que el número de muestras de este tipo es bajo. 
+
+**Metros cuadrados.** Comprobamos que hay una tendencia positiva, de forma que el ascenso es notable. Esto quiere decir que cuanto más grande sea la casa, mayor será su precio. Este gráfico se estabiliza al llegar a 5000 pies cuadrados, pero esto probablemente sea debido a que la cantidad de casos es muy inferior.
+
+**Suelo.** Respecto al suelo, de nuevo se puede comprobar que se trata de una variable discreta, por lo que no podremos observar la distribución de la misma. Por otro lado, podemos ver que su tendencia también será ascendente. 
