@@ -51,20 +51,35 @@ for(c in names(results)[1:4])
 
 ```
 
-```{r EJERCICIO 1}
-library(pdp)
-library(vip)
-library(lime)
-library(caret)
+Con el propósito de representar los diversos efectos de las variables se representarán los diferentes PDP de las variables solicitadas. Para ello, se usarán las librerías ggplot2 y gridExtra.
+
+```{r EJERCICIO 1, warning = FALSE}
+library(ggplot2)
 library(gridExtra)
-fit_caret = train(cnt ~., data = results, method = "rf", trControl = trainControl(method = "cv",number = 5))
-p1 = partial(fit_caret, pred.var = "days_since_2011", plot = TRUE, rug = TRUE, plot.engine = "ggplot2")
-p2 = partial(fit_caret, pred.var = "temp", plot = TRUE, rug = TRUE, plot.engine = "ggplot2")
-p3 = partial(fit_caret, pred.var = "hum", plot = TRUE, rug = TRUE, plot.engine = "ggplot2")
-p4 = partial(fit_caret, pred.var = "windspeed", plot = TRUE, rug = TRUE, plot.engine = "ggplot2")
-grid.arrange(p1,p2,p3,p4,ncol = 4, nrow = 1)
+a = 2700
+b = 5800
+p1 = ggplot() + geom_line(aes(x = days_since$days_since_2011, y = results$days_since_2011)) +
+  geom_rug(mapping = aes(x = days_since$days_since_2011), sides = "b", inherit.aes = F) + xlab("Days since 2011") +
+  ylab(NULL) + ylim(a,b)
+p2 = ggplot() + geom_line(aes(x = days_since$temp, y = results$temp)) +
+  geom_rug(mapping = aes(x = days_since$temp), sides = "b", inherit.aes = F) + xlab("Temperature") + ylab(NULL) +
+  ylim(a,b)
+p3 = ggplot() + geom_line(aes(x = days_since$hum, y = results$hum)) +
+  geom_rug(mapping = aes(x = days_since$hum), sides = "b", inherit.aes = F) + xlab("Humidity") + ylab(NULL) +
+  ylim(a,b)
+p4 = ggplot() + geom_line(aes(x = days_since$windspeed, y = results$windspeed)) +
+  geom_rug(mapping = aes(x = days_since$windspeed), sides = "b", inherit.aes = F) + xlab("Windspeed") + ylab(NULL) +
+  ylim(a,b)
+grid.arrange(p1,p2,p3,p4,ncol = 4,left = "Resultados")
 ```
 
+En primer lugar, la variable en la que mayor variación se apreciaría sería los días desde 2011. En este se aprecia un crecimiento escalado, con fuertes subidas de las ventas con las jornadas entorno a los días 100 y 400. A partir del día 650, se aprecia el inicio de un fuerte descenso.
+
+En segundo lugar, también la temperatura sería un factor influyente a la hora de analizar las ventas. Si la temperatura es de entorno a 0 grados, los alquileres rondan los 3000, mientras que si hace entorno a 20 grados los alquileres ascenden a los 5200. A paritr de los 25 grados se decrecen.
+
+En tercer lugar, referente a la humedad, esta también afectaría a los alquileres de bicis. Si la humedad es menor al 50%, la venta se mantiene estable entorno a los 4700 usuarios. A partir de este número, la venta decrece fuertemente, llegando a los 3500 alquileres con un 100% de humedad.
+
+Por último, huelga decir que la velocidad del viento, aunque no es el factor principal a la hora de adquirir este servicio, si que influiría bastante. Si la velocidad del viento es nula, las ventas se situarían en torno a las 4700 bicis. No obstante, a medida que aumenta este dato, menor número de alquileres se consigue, llegando hasta los 4000 alquileres con 25 km/h. A partir de esta medida, las ventas se mantienen estables, posiblemente debido a la pocas instancias con un registro superior a este. 
 
 ## EXERCISE:
 
