@@ -13,10 +13,14 @@ Analyse the influence of **days since 2011, temperature, humidity** and **wind s
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ```{r}
 =======
 ```{r PREPROCESADO}
 >>>>>>> a3dc4f3920a458c7d5f6e7cbe823a65eb5fcb43d
+=======
+```{r}
+>>>>>>> fede69f29790df710c45f6824814175a0368f49d
 library(dplyr)
 library(plotly)
 library(reshape2)
@@ -24,9 +28,13 @@ library(lubridate)
 library(randomForestSRC)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #setwd("/Users/cmonserr/OneDrive - UPV/Trabajo_2/Asignaturas/Evaluacion de modelos/Practicas/Practica 3/Bike-Sharing-Dataset")
 =======
 >>>>>>> a3dc4f3920a458c7d5f6e7cbe823a65eb5fcb43d
+=======
+#setwd("/Users/cmonserr/OneDrive - UPV/Trabajo_2/Asignaturas/Evaluacion de modelos/Practicas/Practica 3/Bike-Sharing-Dataset")
+>>>>>>> fede69f29790df710c45f6824814175a0368f49d
 days <- read.csv("day.csv")
 hour <- read.csv("hour.csv")
 
@@ -60,6 +68,7 @@ for(c in names(results)[1:4])
 ```
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 Con el propósito de representar los diversos efectos de las variables se representarán los diferentes PDP de las variables solicitadas. Para ello, se usarán las librerías ggplot2 y gridExtra.
 
@@ -92,6 +101,9 @@ En tercer lugar, referente a la humedad, esta también afectaría a los alquiler
 Por último, huelga decir que la velocidad del viento, aunque no es el factor principal a la hora de adquirir este servicio, si que influiría bastante. Si la velocidad del viento es nula, las ventas se situarían en torno a las 4700 bicis. No obstante, a medida que aumenta este dato, menor número de alquileres se consigue, llegando hasta los 4000 alquileres con 25 km/h. A partir de esta medida, las ventas se mantienen estables, posiblemente debido a la pocas instancias con un registro superior a este. 
 
 >>>>>>> a3dc4f3920a458c7d5f6e7cbe823a65eb5fcb43d
+=======
+
+>>>>>>> fede69f29790df710c45f6824814175a0368f49d
 ## EXERCISE:
 
 Generate a 2D Partial Dependency Plot with humidity and temperature to predict the number of bikes rented depending of those parameters.
@@ -102,10 +114,13 @@ Show the density distribution of both input features with the 2D plot as shown i
 
 TIP: Use geom_tile() to generate the 2D plot. Set width and height to avoid holes. 
 
+<<<<<<< HEAD
 ## QUESTION:
 
 Interpret the results.
 
+=======
+>>>>>>> fede69f29790df710c45f6824814175a0368f49d
 
 ```{r}
 
@@ -126,6 +141,22 @@ for(i in 1:nrow(th)){
 
 ```
 
+<<<<<<< HEAD
+=======
+```{r}
+library(ggplot2)
+
+ggplot(th, aes(x = round(temp/3)*3, y = round(hum/8)*8, fill = p)) + geom_tile() + geom_rug(mapping= aes(x =temp), sides = "b", inherit.aes = F) + geom_rug(mapping= aes(y =hum), sides = "l", inherit.aes = F) + scale_x_continuous(limits = c(0, 33))+ scale_y_continuous(limits = c(30, 95))+xlab('Temperatura')+ylab("Humedad") + labs(fill="Número de bicicletas")
+```
+
+
+## QUESTION:
+Interpret the results.
+
+Según el mapa de calor obtenido, se alquilan más bicicletas cuando la temperatura está entre de 16 y 25 grados y la humedad se encuentra en el intervalo 40-60. Esto coincide con unas condiciones climáticas comunes a finales de la primavera e incluso algunos días de verano, por lo que son condiciones favorables para alquilar bicicletas.
+
+En cambio, se alquilarán menos bicicletas cuando la temperatura está alrededor de 3 grados y la humedad es superior a 80, ya que estas condiciones coinciden con condiciones más desfavorables para realizar actividades al aire libre.
+>>>>>>> fede69f29790df710c45f6824814175a0368f49d
 
 ## EXERCISE:
 
